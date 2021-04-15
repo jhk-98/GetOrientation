@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 //    TextView txtAzimuth, txtPitch, txtRoll;
+    AzimuthView azimuthView;
     SensorManager sensorManager;
     Sensor magSenseor, accSenseor;
     SensorEventListener listener;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        azimuthView = findViewById(R.id.azimuthView);
 
 //        txtAzimuth = findViewById(R.id.txtAzimuth);
 //        txtPitch = findViewById(R.id.txtPitch);
@@ -66,17 +69,12 @@ public class MainActivity extends AppCompatActivity {
 
                     SensorManager.getOrientation(R, values);
 
+                    azimuthView.azimuth = (int) radian2Degree(values[0]);
+                    azimuthView.invalidate();
 
 
-                    if((int) radian2Degree(values[0]) == 180) {
 
-                        Toast.makeText(MainActivity.this, "180", Toast.LENGTH_SHORT);
 
-                    } else if((int) radian2Degree(values[0]) == -180) {
-
-                        Toast.makeText(MainActivity.this, "-180", Toast.LENGTH_SHORT);
-
-                    }
 
 
 
